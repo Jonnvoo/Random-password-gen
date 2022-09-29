@@ -5,3 +5,5 @@ This random password generator website prompts the user upon opening the site di
 
 ![Screenshot](./assets/Screenshot/PasswordGen.PNG)  
 
+## URL
+https://jonnvoo.github.io/Random-password-gen/ 

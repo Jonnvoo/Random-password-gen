@@ -8,36 +8,41 @@ var specialCharacters
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  passwordText.textContent = generatePassword();
 
 }
 
 function generatePassword() {
-  var password = ""
+  var randPassword = ""
   var acceptedCharc = ""
   var lowercaseletters = "abcdefghijklmnopqrstuvwxyz";
   var uppercaseletters = lowercaseletters.toUpperCase();
   var digits = '0123456789';
   var symbols = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-
+  
+  
   if (lowercase == "Y") {
     acceptedCharc += lowercaseletters
   }
   if (uppercase == "Y") {
     acceptedCharc += uppercaseletters
   }
-
+  
   if (numbers == "Y") {
     acceptedCharc += digits
   }
-
+  
   if (specialCharacters == "Y") {
     acceptedCharc += symbols
   }
-
-
+  
+  for( var i=0; i <= length; i++) {
+    var random = Math.floor( Math.random() * acceptedCharc.length);
+    randPassword +=  acceptedCharc.substring(random, random + 1)
+  }
+  
+  return randPassword
 }
 
 function promptUser() {
@@ -104,9 +109,13 @@ function promptUser() {
   }
 }
 
-window.onload = promptUser();
+window.alert = promptUser();
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+var headerDiv = document.getElementById('header');
+
+
 
 
 /* GIVEN I need a new, secure password

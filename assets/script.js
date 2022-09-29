@@ -1,4 +1,4 @@
-// Assignment Code
+//  global variables defined  
 var generateBtn = document.querySelector("#generate");
 var length
 var lowercase
@@ -6,13 +6,13 @@ var uppercase
 var numbers
 var specialCharacters
 
-// Write password to the #password input
+// This function prints the generated password to the webpage
 function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.textContent = generatePassword();
 
 }
-
+// This is the where all the avaible characters, symbols, and numbers are stored
 function generatePassword() {
   var randPassword = ""
   var acceptedCharc = ""
@@ -20,41 +20,41 @@ function generatePassword() {
   var uppercaseletters = lowercaseletters.toUpperCase();
   var digits = '0123456789';
   var symbols = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-  
-  
+
+// Lets the script know if the user selects the "Yes" options.
   if (lowercase == "Y") {
     acceptedCharc += lowercaseletters
   }
   if (uppercase == "Y") {
     acceptedCharc += uppercaseletters
   }
-  
+
   if (numbers == "Y") {
     acceptedCharc += digits
   }
-  
+
   if (specialCharacters == "Y") {
     acceptedCharc += symbols
   }
-  
-  for( var i=0; i <= length; i++) {
-    var random = Math.floor( Math.random() * acceptedCharc.length);
-    randPassword +=  acceptedCharc.substring(random, random + 1)
+// This for loop is the actual randomizer for the password 
+  for (var i = 0; i <= length; i++) {
+    var random = Math.floor(Math.random() * acceptedCharc.length);
+    randPassword += acceptedCharc.substring(random, random + 1)
   }
-  
+
   return randPassword
 }
-
+//  This Function prompts the user with alerts of what they would like in their password
 function promptUser() {
-  length = window.prompt("How long do you want the password?");
+  length = window.prompt("Choose the length of your password between 8-128.");
 
-
-  if (!length) {
-    return;
+  if (!length)
+  return; {
   }
 
   if (length < 8 || length > 128) {
     window.alert("invalid length");
+    return;
   }
 
   lowercase = window.prompt("Do you wish for lowercase letters in your password?(Y or N)");
@@ -67,10 +67,10 @@ function promptUser() {
   lowercase = lowercase.toUpperCase();
 
   if (lowercase != 'Y' && lowercase != 'N') {
-    window.alert("Invalid option");
+    window.alert("Invalid option!");
   }
 
-  uppercase = window.prompt("Do you wish for upercase letters in your password?(Y or N)");
+  uppercase = window.prompt("Do you wish for Uppercase letters in your password?(Y or N)");
 
   if (!uppercase) {
     return;
@@ -79,10 +79,10 @@ function promptUser() {
   uppercase = uppercase.toUpperCase();
 
   if (uppercase != 'Y' && uppercase != 'N') {
-    window.alert("Invalid option");
+    window.alert("Invalid option!");
   }
 
-  numbers = window.prompt("Do you wish for numbers in your password?(Y or N)");
+  numbers = window.prompt("Do you wish to have numbers in your password?(Y or N)");
 
 
   if (!numbers) {
@@ -92,7 +92,7 @@ function promptUser() {
   numbers = numbers.toUpperCase();
 
   if (numbers != 'Y' && numbers != 'N') {
-    window.alert("Invalid option");
+    window.alert("Invalid option!");
   }
 
   specialCharacters = window.prompt("Do you wish for SpecialCharacters in your password?(Y or N)");
@@ -105,31 +105,10 @@ function promptUser() {
   specialCharacters = specialCharacters.toUpperCase();
 
   if (specialCharacters != 'Y' && specialCharacters != 'N') {
-    window.alert("Invalid option");
+    window.alert("Invalid option!");
   }
 }
 
 window.alert = promptUser();
-// Add event listener to generate button
+// Added event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-var headerDiv = document.getElementById('header');
-
-
-
-
-/* GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page*/ 
